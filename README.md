@@ -55,6 +55,16 @@ HDFS, Hadoop Distributed File System, 分布式文件系统<br>
 * Client向Primary DataNode发送写命令，Primary DataNode将写命令转发给Secondary DataNode，DataNodes收到写命令时才进行真正地写操作，把缓存的数据写到文件系统中，并返回结果
 * 不支持并行的写操作
 * 支持并行的append
+### MapReduce
+MapReduce是一种编程模型，用于大规模数据集的并行运算。Map（映射）和Reduce（化简），采用分而治之思想，先把任务分发到集群多个节点上，并行计算，然后再把计算结果合并，从而得到最终计算结果。<br>
+在MapReduce中，一个准备提交执行的应用程序称为“作业（job）”，而从一个作业划分出的运行于各个计算节点的工作单元称为“任务（task）”。
+#### JobTracker
+* 作业跟踪器，运行到Master节点上，是MapReduce体系的调度器。用于处理作业的后台程序，决定有哪些文件参与作业的处理，然后把作业切割成为一个个的小task，并把它们分配到所需要的数据所在的子节点。
+* 每个集群只有唯一一个JobTracker
+#### TaskTracker
+* 任务跟踪器，位于每个slave节点上，与DataNode结合（代码与数据一起的原则），管理各自节点上的task（由jobtracker分配）
+* 每个节点只有一个tasktracker，但一个tasktracker可以启动多个JVM，用于并行执行map或reduce任务
+* 可以与jobtracker交互通信，告知jobtracker子任务完成情况。
 
 Zookeeper
 ----------
