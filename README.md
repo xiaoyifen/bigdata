@@ -79,7 +79,7 @@ hdfs dfs -cat /test/aa.txt     // 查看/test目录下文件aa.txt的内容（�
 ```
 6. 复制文件 
 ```
-hdfs dfs -copyToLocal /test/aa.txt   // 将/test/aa.txt文件复制到当前目录（.是指当前目录，也可指定其他的目录）
+hdfs dfs -get /test/aa.txt .   // 将/test/aa.txt文件复制到当前目录（.是指当前目录，也可指定其他的目录，把-get换成-copyToLocal效果一样）
 ```
 7. 删除文件或文件夹
 ```
