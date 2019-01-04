@@ -81,6 +81,7 @@ ZooKeeper 是一个开源的分布式协调服务，它是集群的管理者，�
 * 支持分布式的读和写操作
 * 2f+1个ZooKeeper节点可以容忍f个节点故障，仍然正确
 * ZooKeeper 的数据模型 ：Data Tree（类似文件系统）
+* Zookeeper是Hadoop和Hbase的重要组件
 
 Hbase
 ----------
