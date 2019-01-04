@@ -55,6 +55,45 @@ HDFS, Hadoop Distributed File System, 分布式文件系统<br>
 * Client向Primary DataNode发送写命令，Primary DataNode将写命令转发给Secondary DataNode，DataNodes收到写命令时才进行真正地写操作，把缓存的数据写到文件系统中，并返回结果
 * 不支持并行的写操作
 * 支持并行的append
+#### 基本操作命令
+1. 查询命令
+```　
+hdfs dfs -ls /   // 查询/目录下的所有文件和文件夹
+hdfs dfs -ls -R  // 以递归的方式查询/目录下的所有文件
+```
+2. 创建文件夹
+```
+hdfs dfs -mkdir /test    // 创建test文件夹
+```
+3. 创建新的空文件
+```
+hdfs dfs -touchz /aa.txt   // 在/目录下创建一个空文件aa.txt
+```
+4. 添加文件
+```
+hdfs dfs -put aa.txt /test // 将当前目录下的aa.txt文件复制到/test目录下（把-put换成-copyFromLocal效果一样-moveFromLocal会移除本地文件）
+```
+5. 查看文件内容
+```
+hdfs dfs -cat /test/aa.txt     // 查看/test目录下文件aa.txt的内容（将-cat 换成-text效果一样）
+```
+6. 复制文件 
+```
+hdfs dfs -copyToLocal /test/aa.txt   // 将/test/aa.txt文件复制到当前目录（.是指当前目录，也可指定其他的目录）
+```
+7. 删除文件或文件夹
+```
+hdfs dfs -rm -r /test/aa.txt   // 删除/test/aa.txt文件（/test/aa.txt可以替换成文件夹就是删除文件夹）
+```
+8. 重命名文件
+```
+hdfs dfs -mv /aa.txt /bb.txt   // 将/aa.txt文件重命名为/bb.txt
+```
+9. 将源目录中的所有文件排序合并到一个本地文件
+```
+hdfs dfs -getmerge / local-file     // 将/目录下的所有文件合并到本地文件local-file中
+```
+  
 ### MapReduce
 MapReduce是一种编程模型，用于大规模数据集的并行运算。Map（映射）和Reduce（化简），采用分而治之思想，先把任务分发到集群多个节点上，并行计算，然后再把计算结果合并，从而得到最终计算结果。<br>
 在MapReduce中，一个准备提交执行的应用程序称为“作业（job）”，而从一个作业划分出的运行于各个计算节点的工作单元称为“任务（task）”。
@@ -85,6 +124,9 @@ ZooKeeper 是一个开源的分布式协调服务，它是集群的管理者，�
 
 Hbase
 ----------
+Apache HBase是基于Hadoop构建的一个分布式的、可伸缩的海量数据存储系统。HBase常被用来存放一些结构简单，但数据量非常大的数据(通常在TB级别以上)，如历史订单记录，日志数据，监控Metris数据等等，HBase提供了简单的基于Key值的快速查询能力。
+* 面向列
+* NoSQL的Key/vale数据库
 
 Kafka
 ----------
